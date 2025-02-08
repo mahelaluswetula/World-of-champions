@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Match Ticket Booking System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f7fc;
+            margin-top: 20px;
+        }
+        nav {
+            background-color: #007bff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: #0056b3;
+            color: #fff !important;
+        }
+        #matches, #book-ticket, #contact, #registration {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .form-control {
+            border-radius: 5px;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        #match-details {
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            padding: 20px;
+            display: none;
+        }
+        #match-details h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #007bff;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .list-group-item {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .container form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">Football Ticket Booking</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#matches">Matches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#book-ticket">Book Ticket</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#registration">Registration</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="container">
+    <h2>Welcome to Football Match Ticket Booking System</h2>
+    <p>This platform allows you to book tickets for exciting football matches. Choose your region, select a match, and book your tickets easily!</p>
+</section>
+
+<!-- Match Selection Section -->
+<section id="matches" class="container">
+    <h2>Select Your Match</h2>
+    <div class="list-group" id="match-list">
+        <div class="list-group-item" data-match="Yanga vs Simba" data-price="20,000 TZS">
+            Yanga vs Simba - <strong>20,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="JKT Tanzania vs Tanzania Prison" data-price="15,000 TZS">
+            JKT Tanzania vs Tanzania Prison - <strong>15,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Azam vs Tabora United" data-price="12,000 TZS">
+            Azam vs Tabora United - <strong>12,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Singida Black Stars vs KMC" data-price="18,000 TZS">
+            Singida Black Stars vs KMC - <strong>18,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Mashujaa vs Coastal Union" data-price="16,000 TZS">
+            Mashujaa vs Coastal Union - <strong>16,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Fountain Gate vs Biashara United" data-price="14,000 TZS">
+            Fountain Gate vs Biashara United - <strong>14,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Ruvu Shooting vs Mtibwa Sugar" data-price="15,000 TZS">
+            Ruvu Shooting vs Mtibwa Sugar - <strong>15,000 TZS</strong>
+        </div>
+        <div class="list-group-item" data-match="Namungo vs Geita Gold" data-price="17,000 TZS">
+            Namungo vs Geita Gold - <strong>17,000 TZS</strong>
+        </div>
+    </div>
+
+    <!-- Match details section (hidden by default) -->
+    <div id="match-details">
+        <h3>Your Selected Match: <span id="match-name"></span></h3>
+        <p>Ticket Price: <span id="ticket-price"></span></p>
+
+        <!-- District and Region Selection (Hidden until match is selected) -->
+        <div class="form-group">
+            <label for="region">Region</label>
+            <select class="form-control" id="region" name="region">
+                <option value="Dar es Salaam">Dar es Salaam</option>
+                <option value="Arusha">Arusha</option>
+                <option value="Mbeya">Mbeya</option>
+                <option value="Mwanza">Mwanza</option>
+                <option value="Tanga">Tanga</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="district">District</label>
+            <select class="form-control" id="district" name="district" required>
+                <!-- District options will load here -->
+            </select>
+        </div>
+
+        <button class="btn btn-primary" id="submit-ticket">Submit Ticket</button>
+    </div>
+</section>
+
+<!-- Registration Section -->
+<section id="registration" class="container">
+    <h2>Registration</h2>
+    <form id="registration-form">
+        <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" class="form-control" id="full-name" name="full-name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+            <label for="registration-number">Registration Number</label>
+            <input type="text" class="form-control" id="registration-number" name="registration-number" placeholder="Enter your registration number (e.g. BCS-00-0000-0000)" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="region-registration">Region</label>
+            <select class="form-control" id="region-registration" name="region-registration">
+                <option value="Dar es Salaam">Dar es Salaam</option>
+                <option value="Arusha">Arusha</option>
+                <option value="Mbeya">Mbeya</option>
+                <option value="Mwanza">Mwanza</option>
+                <option value="Tanga">Tanga</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="district-registration">District</label>
+            <select class="form-control" id="district-registration" name="district-registration" required>
+                <!-- District options will load here -->
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container">
+    <h2>Contact Information</h2>
+    <p>If you have any questions or need support, feel free to reach out to us:</p>
+    <ul>
+        <li>Email: support@footballtickets.com</li>
+        <li>Phone: +255 123 456 789</li>
+        <li>Address: Football Tickets Office, Dar es Salaam, Tanzania</li>
+    </ul>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Football Ticket Booking. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    $(document).ready(function() {
+        // Show match details when a match is selected
+        $('.list-group-item').click(function() {
+            var matchName = $(this).data('match');
+            var ticketPrice = $(this).data('price');
+            $('#match-name').text(matchName);
+            $('#ticket-price').text(ticketPrice);
+            $('#match-details').show();
+        });
+
+        // Populate districts based on region selection
+        $('#region, #region-registration').change(function() {
+            var region = $(this).val();
+            var districts = [];
+
+            if (region == "Dar es Salaam") {
+                districts = ["Kinondoni", "Ilala", "Temeke"];
+            } else if (region == "Arusha") {
+                districts = ["Arusha City", "Longido", "Karatu"];
+            } else if (region == "Mbeya") {
+                districts = ["Mbeya City", "Chunya", "Mbozi"];
+            } else if (region == "Mwanza") {
+                districts = ["Mwanza City", "Ilemela", "Sengerema"];
+            } else if (region == "Tanga") {
+                districts = ["Tanga City", "Muheza", "Pangani"];
+            }
+
+            // Populate the district dropdown
+            var districtDropdown = $(this).closest('form').find('#district, #district-registration');
+            districtDropdown.empty();
+            $.each(districts, function(index, value) {
+                districtDropdown.append('<option value="' + value + '">' + value + '</option>');
+            });
+        });
+
+        // Submit the ticket booking form
+        $('#submit-ticket').click(function() {
+            alert("Ticket has been successfully booked.");
+        });
+
+        // Smooth scrolling for navigation links
+        $('a.nav-link').click(function(event) {
+            event.preventDefault();
+            var target = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 50
+            }, 800);
+        });
+    });
+</script>
+
+</body>
+</html>
